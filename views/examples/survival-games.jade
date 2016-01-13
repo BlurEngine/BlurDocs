@@ -1,0 +1,72 @@
+//-
+  Copyright 2016 Ali Moghnieh
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+extends ../templates/examples
+append variables
+  - title = "Survival Games"
+
+block content
+  +add_section
+    p #[b Survival Games] is the popular version of Hunger Games in Minecraft. The game typically has 24 players, all spawning equally spaced out from the center with chests in the middle. All chests in the game generate random items which adds a unique twist to the game.
+    pre: code.
+      extents: &extents
+      - {id: 'boundaries', cuboid: {min: '0, 0, 0', max: '150.0, 150.0, 150.0'}}
+      - id: spawns
+        union:
+        - id:     default
+          block:  1,2,3
+        - block:  13.5, 1, 8.5 # First spawn
+        - block:  14.5, 1, 9.5 # Second spawn... etc.
+        # insert 22 more spawns
+
+      spawns: &spawns
+        default: {'default': {yaw: 30, pitch: 20}}
+        default: {extent: 'default', yaw: 30, pitch: 20}
+        spawns:
+        - spawns: {point-to: '0,~,0'}
+        - {extent: 'spawns', point-to: '0,~,0'}
+
+      modules:
+      - MapInfo:
+          blur-version: 1
+          version: 0.1
+          id: castle
+          name: Castle
+          description: Castles are cool.
+          authors:
+          - {uuid: '5552e21d-de79-40bc-89da-62ee63244fb2', role: 'Gameplay designer & Map designer'}
+          - {uuid: '5552e21d-de79-40bc-89da-62ee63244fb3', role: 'Map builder'}
+
+      - Extents: *extents
+      - Spawns: *spawns
+      - Teams: {id: 'survivors', name: 'Survivors', max: 24, chat-prefix: '&e', color: 'Yellow'}
+      - Boundaries: boundaries # 'boundaries' extent (See L2)
+      - LastPlayerAliveWinner
+      - Goal:
+          lives: 1 # each player gets one life.
+      - Stages:
+        - name: Pregame
+          modules:
+          - Invulnerable: true
+          - NextStage: 30s
+        - name: Initial
+          modules:
+          - Invulnerable: 1m # Invulnerability for 1 minute after the game starts
+          - Goal:
+            time-limit: 15m # first stage should only last 15 minutes
+        - name: Deathmatch
+          modules:
+          - Goal: 
+            time-limit: 5m # deathmatch should only last 5 minutes

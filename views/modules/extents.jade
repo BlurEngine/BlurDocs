@@ -1,0 +1,82 @@
+//-
+  Copyright 2016 Ali Moghnieh
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+extends ../templates/modules
+append variables
+  - title = "Extents"
+
+block content
+  +add_section
+    :markdown-it
+      Extents are exactly what it says on the lid: a certain extent of the world. Extents can be defined in many shapes and forms. The power of Extents ranges from creating spawn points to control points (_TF2 Style!_) to just a simple boundaries player can't leave. 
+
+      On their own, Extents are useless, they must be used in conjunction with other Modules that accept Extents. An example of such a module would be the [Boundaries Module](/modules/boundaries).
+      
+      Extents can be defined using the **Extents** module. The following is how the Extents module can be defined:
+    pre: code.
+      modules:
+      - Extents:          # Module called Extents
+        - block: 10,20,30 # Block Extent type
+        - cylinder:       # Cylinder Extent type
+            base: 40,50,60
+            radius: 50
+    +data_types_row(['List of **Extent** (See below)'], 4)
+
+
+  //- Block
+  +add_section('Block')
+    :markdown-it
+      The **Block** Extent allows for the definition of an Extent which spans over only one single Minecraft Block. The Extent actually spans from the rounded down coordinates to the rounded up coordinates, effectively the whole block. Block takes a value of a **String** (or a single-entry **Map** with String value). The String defines the three components that represent the coordinates of the block in the form of *X*,*Y*,*Z*.
+    pre: code.
+      # Simple String representation of a Vector (3D coordinates).
+      block: 12, 34, 56
+
+      # Alternatively, a Map with property base and value 12, 34, 56, produces the same behaviour.
+      block:
+        base: 12, 34, 56
+    +data_types_row(['Map of **Vector**'])
+
+
+  //- Cuboid
+  +add_section('Cuboid')
+    :markdown-it
+      The **Cuboid** Extent allows for the definition of an Extent which spans over a cuboid region. A cuboid region consist of two Vectors (or points) which can form a cube, square, or rectangle shape. The Cuboid takes a value of a **Map**, where there are two **Vector** entries, _point1_ and _point2_. The Vectors are represented as a **String**.
+
+    pre: code.
+      cuboid:
+        # first corner is at x: 1, y: 2, and z: 3
+        point1: 1, 2, 3
+        # second corner is at x: 4, y: 5, and z: 6
+        point2: 4, 5, 6
+    +property_table
+      +property_entry('point1', 'Vector', 'The first corner of the cuboid.')
+      +property_entry('point2', 'Vector', 'The second corner the cuboid.')
+    .row
+      +data_types(['Map of **Vector**'])
+      +info("Order of _point1_ and _point2_ do not matter.").col-xs-offset-6
+
+
+  //- Cylinder
+  +add_section('Cylinder')
+    p The #[b Cylinder] Extent is a 3D circle, like a tube, which despite going against the blocks-only rule, does make for a great addition (you'll see as you progress). A Cylinder consists of three components. The base vector, which is where the center of the cylinder is relative to the world. The #[mark radius] #[mark double], which
+    pre: code.
+      cylinder:
+        base: 40, 50, 60
+        radius: 50
+    +property_table
+      +property_entry('base', 'Vector', 'The center of the cylinder in the world.')
+      +property_entry('radius', 'Double', 'The radius of the cylinder in the world.')
+    +data_types_row(['Map'])
+

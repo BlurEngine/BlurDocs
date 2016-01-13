@@ -1,0 +1,90 @@
+//-
+  Copyright 2016 Ali Moghnieh
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+extends layout
+
+mixin add_section(header)
+  section.row&attributes(attributes)
+    if header
+      header: h2= header
+    block
+
+mixin data_types(args, col)
+  //-If args is a number, means most likely col was not passed and that args is col.
+  //-The rest is handled below, See block.
+  //-args takes priority over block
+  if isFinite(args)
+    -col = args
+    -args = undefined
+  div(class="col-xs-" + (col ? col : 3))&attributes(attributes)
+    .card.card-primary: .p-a
+      h3 Data Types
+      hr.card-hr.m-t-0
+      .card-desc
+        if args
+          ul
+            each arg in args
+              li!= md(arg)
+        else
+          block
+mixin data_types_row(args, col)
+  .row: +data_types(args, col)
+
+mixin info(text, col)
+  div(class="col-xs-" + (col ? col : 3))&attributes(attributes)
+    .card.card-info: .p-a-sm
+      span.fa.fa-info-circle.fa-2x.m-b
+      span.card-desc
+        if text
+          span(class=text.length>50?'small':'')!=md(text)
+        else
+          block
+
+mixin property_table
+  table.table.table-striped.property-table&attributes(attributes)
+    tr
+      th Property
+      th Type
+      th Description
+      th Default
+    block
+mixin property_entry(name, type, desc, def)
+  if desc === undefined
+    - desc= "No description"
+  if def === undefined
+    - def= ""
+  tr 
+    td #[mark #{name}]
+    td=type
+    td=desc
+    td=def
+
+block _content
+  .row.no-padding: .col-xs-12
+    .col-xs-2
+      .p-l-sm: h1 #{category}
+    if title
+      .col-xs-10: header.p-l: h1 #{title}
+  .row.no-padding: .col-xs-12
+    //- First column - Navbar
+    aside.sidebar.col-xs-2.nav-documentation
+      nav.navbar.navbar-default
+        .container-fluid
+          ul.nav.nav-stacked
+            block sidebarnav
+    //- Second column - content
+    main.col-xs-10
+      article.documentation
+        block content

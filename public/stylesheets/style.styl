@@ -1,0 +1,583 @@
+/*
+ * Copyright 2016 Ali Moghnieh
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+body
+  font-family: "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: $default-color;
+  background: url(/images/grid.svg);
+  background-color: $background-color;
+html, body
+  height 100%
+
+/*
+ * UTILS
+ */
+
+.pos-r { position: relative !important; }
+.pos-a { position: absolute !important; }
+.pos-f { position: fixed !important; }
+
+.fl-l { float: left !important; }
+.fl-r { float: right !important; }
+.fl-c { clear: both; }
+
+.w-sm   { width: 25% !important; }
+.w-md   { width: 50% !important; }
+.w-lg   { width: 75% !important; }
+.w-full { width: 100% !important; }
+
+.m-a-0 { margin:        0 !important; }
+.m-t-0 { margin-top:    0 !important; }
+.m-r-0 { margin-right:  0 !important; }
+.m-b-0 { margin-bottom: 0 !important; }
+.m-l-0 { margin-left:   0 !important; }
+
+.m-a { margin:        ($spacer     * 0.5) !important; }
+.m-t { margin-top:    ($spacer-y   * 0.5) !important; }
+.m-r { margin-right:  ($spacer-x   * 0.5) !important; }
+.m-b { margin-bottom: ($spacer-y   * 0.5) !important; }
+.m-l { margin-left:   ($spacer-x   * 0.5) !important; }
+.m-x { margin-right:  ($spacer-x   * 0.5) !important; margin-left:   ($spacer-x   * 0.5) !important; }
+.m-y { margin-top:    ($spacer-y   * 0.5) !important; margin-bottom: ($spacer-y   * 0.5) !important; }
+.m-x-auto { margin-right: auto !important; margin-left: auto !important; }
+
+.m-a-sm { margin:        $spacer !important; }
+.m-t-sm { margin-top:    $spacer-y !important; }
+.m-r-sm { margin-right:  $spacer-x !important; }
+.m-b-sm { margin-bottom: $spacer-y !important; }
+.m-l-sm { margin-left:   $spacer-x !important; }
+.m-x-sm { margin-right:  $spacer-x !important; margin-left: $spacer-x !important; }
+.m-y-sm { margin-top:    $spacer-y !important; margin-bottom: $spacer-y !important; }
+
+.m-a-md { margin:        ($spacer-y * 1.5) !important; }
+.m-t-md { margin-top:    ($spacer-y * 1.5) !important; }
+.m-r-md { margin-right:  ($spacer-y * 1.5) !important; }
+.m-b-md { margin-bottom: ($spacer-y * 1.5) !important; }
+.m-l-md { margin-left:   ($spacer-y * 1.5) !important; }
+.m-x-md { margin-right:  ($spacer-x * 1.5) !important; margin-left:   ($spacer-x * 1.5) !important; }
+.m-y-md { margin-top:    ($spacer-y * 1.5) !important; margin-bottom: ($spacer-y * 1.5) !important; }
+
+.m-a-lg { margin:        ($spacer-y * 3) !important; }
+.m-t-lg { margin-top:    ($spacer-y * 3) !important; }
+.m-r-lg { margin-right:  ($spacer-y * 3) !important; }
+.m-b-lg { margin-bottom: ($spacer-y * 3) !important; }
+.m-l-lg { margin-left:   ($spacer-y * 3) !important; }
+.m-x-lg { margin-right:  ($spacer-x * 3) !important; margin-left:   ($spacer-x * 3) !important; }
+.m-y-lg { margin-top:    ($spacer-y * 3) !important; margin-bottom: ($spacer-y * 3) !important; }
+
+.p-a-0 { padding:        0 !important; }
+.p-t-0 { padding-top:    0 !important; }
+.p-r-0 { padding-right:  0 !important; }
+.p-b-0 { padding-bottom: 0 !important; }
+.p-l-0 { padding-left:   0 !important; }
+
+.p-a { padding:        ($spacer   * 0.5) !important; }
+.p-t { padding-top:    ($spacer-y * 0.5) !important; }
+.p-r { padding-right:  ($spacer-x * 0.5) !important; }
+.p-b { padding-bottom: ($spacer-y * 0.5) !important; }
+.p-l { padding-left:   ($spacer-x * 0.5) !important; }
+.p-x { padding-right:  ($spacer-x * 0.5) !important; padding-left:   ($spacer-x * 0.5) !important; }
+.p-y { padding-top:    ($spacer-y * 0.5) !important; padding-bottom: ($spacer-y * 0.5) !important; }
+
+.p-a-sm { padding:        $spacer !important; }
+.p-t-sm { padding-top:    $spacer-y !important; }
+.p-r-sm { padding-right:  $spacer-x !important; }
+.p-b-sm { padding-bottom: $spacer-y !important; }
+.p-l-sm { padding-left:   $spacer-x !important; }
+.p-x-sm { padding-right:  $spacer-x !important; padding-left:   $spacer-x !important; }
+.p-y-sm { padding-top:    $spacer-y !important; padding-bottom: $spacer-y !important; }
+
+.p-a-md { padding:        ($spacer-y * 1.5) !important; }
+.p-t-md { padding-top:    ($spacer-y * 1.5) !important; }
+.p-r-md { padding-right:  ($spacer-y * 1.5) !important; }
+.p-b-md { padding-bottom: ($spacer-y * 1.5) !important; }
+.p-l-md { padding-left:   ($spacer-y * 1.5) !important; }
+.p-x-md { padding-right:  ($spacer-x * 1.5) !important; padding-left:   ($spacer-x * 1.5) !important; }
+.p-y-md { padding-top:    ($spacer-y * 1.5) !important; padding-bottom: ($spacer-y * 1.5) !important; }
+
+.p-a-lg { padding:        ($spacer-y * 3) !important; }
+.p-t-lg { padding-top:    ($spacer-y * 3) !important; }
+.p-r-lg { padding-right:  ($spacer-y * 3) !important; }
+.p-b-lg { padding-bottom: ($spacer-y * 3) !important; }
+.p-l-lg { padding-left:   ($spacer-y * 3) !important; }
+.p-x-lg { padding-right:  ($spacer-x * 3) !important; padding-left:   ($spacer-x * 3) !important; }
+.p-y-lg { padding-top:    ($spacer-y * 3) !important; padding-bottom: ($spacer-y * 3) !important; }
+
+.text-xs-left   { text-align: left; }
+.text-xs-right  { text-align: right; }
+.text-xs-center { text-align: center; }
+
+@media (min-width: $screen-sm-min) {
+  .text-sm-left   { text-align: left; }
+  .text-sm-right  { text-align: right; }
+  .text-sm-center { text-align: center; }
+}
+
+@media (min-width: $screen-md-min) {
+  .text-md-left   { text-align: left; }
+  .text-md-right  { text-align: right; }
+  .text-md-center { text-align: center; }
+}
+
+@media (min-width: $screen-lg-min) {
+  .text-lg-left   { text-align: left; }
+  .text-lg-right  { text-align: right; }
+  .text-lg-center { text-align: center; }
+}
+
+.noselect
+  -webkit-touch-callout none
+  -webkit-user-select none
+  -moz-user-select none
+  user-select none
+  cursor default
+
+
+.table-nonfluid
+  width auto !important
+
+// Animation delays
+delay(a)
+  -webkit-animation-delay a
+  -moz-animation-delay a
+  animation-delay a
+for i in 1..9
+  val = (i * 100)ms
+  .animation-delay-{val}ms
+    delay(val)
+  val = (i)s
+  .animation-delay-{val}s
+    delay(val)
+
+.row.no-padding {
+  [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+// FlexBox
+
+.flex-right
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+
+/*
+ * END OF UTILS
+ */
+h1,h2,h3,h4
+  font-family: Voltaire;
+
+.card
+  p
+    font-size: $default-font-size;
+  small,.small
+    p
+      font-size: $default-font-size - 0.08;
+
+// Icons in input
+.input-with-glyphicon
+  position relative
+  display inline-block
+  vertical-align middle
+  font-size 16px
+.input-with-glyphicon > .form-control
+  padding-left 30px
+.input-with-glyphicon > .glyphicon
+  position absolute
+  top 11px
+  left 10px
+  color #ccc
+  z-index 2
+.input-with-glyphicon
+  width: 100%
+  margin-bottom: 10px
+  margin-left 0
+
+.text-standout
+  font-size: 60px;
+  text-align: center;
+  &.animated.bounceIn
+    animation-duration:1.05s;
+
+// Code styles
+.data-type
+  background-color: #2c2c48;
+  a // Generated a by javascript
+    color: #F90;
+.module-type
+  background-color: #2c2c48;
+  a // Generated a by javascript
+    color: #F90;
+pre
+  position: relative;
+  margin-bottom: 24px;
+  border-radius: 3px;
+  border: 1px solid #C3CCD0;
+  overflow: hidden;
+code
+  display: block;
+  padding: 12px 24px;
+  overflow-y: auto;
+  font-weight: 300;
+  font-family: Menlo, monospace;
+code.has-numbering
+  margin-left: 21px;
+.pre-numbering
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 23px;
+  padding: 7px 2px 12px 0;
+  border-right: 1px solid #C3CCD0;
+  border-radius: 3px 0 0 3px;
+  text-align: right;
+  font-size: $code-font-size;
+  color: #AAA;
+
+.horizontal-table
+  font-size 120%
+  th, td
+      border 1px solid white
+      border-collapse collapse
+    th,td
+      padding 5px
+      text-align center
+    th
+      text-align right
+table.inside-borders
+  border-collapse collapse
+  td, th 
+    border 1px solid rgba(255,255,255,0.4)
+  tr:first-child th, tr:first-child td
+    border-top 0
+  tr:last-child
+    border-bottom 0
+  tr th
+    border-left 0
+  tr:last-child th, tr td
+    border-right 0
+    border-bottom 0
+
+
+// Glyphicons
+.glyphicon.glyphicon-log-out
+  transform: rotateY(-180deg)
+
+// cards
+.card
+  h1, h2, h3
+    margin-top: 10px;
+    margin-bottom 6px;
+.card-number
+  margin-top 0
+  margin-bottom 0
+  .label
+    margin-left: ($spacer-x / 2);
+    padding: .125em .5em;
+    font-size: 50%;
+    vertical-align: middle;
+  .label-danger
+    background-color: #C52925;
+.card-desc
+  font-size: 1.1em;
+  color: #a9aebd;
+.card-colored
+  color: #fff;
+  border-radius: 3px;
+.card-colored .delta-negative,
+.card-colored .delta-positive,
+.card-colored .card-number
+  font-weight: normal;
+  color: inherit;
+.card-colored .card-desc {
+  font-weight: normal;
+  color: rgba(255, 255, 255, 1);
+}
+.card-hr
+  .p-a &
+    margin-left:  -($spacer-x * 0.5);
+    margin-right: -($spacer-x * 0.5);
+  .p-a-sm &
+    margin-left:  -($spacer-x);
+    margin-right: -($spacer-x);
+  .p-a-md &
+    margin-left:  -($spacer-x * 1.5);
+    margin-right: -($spacer-x * 1.5);
+  .p-a-lg &
+    margin-left:  -($spacer-x * 3);
+    margin-right: -($spacer-x * 3);
+  border-top-color: rgba(255, 255, 255, 0.3);
+
+
+.card-primary
+  background-color: $card-primary-color;
+.card-success
+  background-color: $card-success-color;
+.card-info
+  background-color: $card-info-color;
+.card-danger
+  background-color: $card-danger-color;
+.card-warning
+  background-color: $card-warning-color;
+
+.card
+  ul, ol
+    padding:0;
+    margin-left:$spacer-x;
+
+/* 
+ * Navbar
+ */
+#main-navbar
+  font-size: 1.1em;
+  &, .nav:not(.nav-social)
+    > li > a
+      padding-top:    $navbar-padding;
+      padding-bottom: $navbar-padding;
+nav, .navbar-default
+  background-color: $navbar-bg;
+
+  border-radius: 0px;
+  border: none;
+
+  &, .nav:not(.nav-social)
+    > li > a
+      color $navbar-link-color
+      &:hover, &:focus
+        color $navbar-link-hover-color
+        background-color $navbar-link-hover-bg
+      > i
+        padding-right: 5px;
+    > .active > a
+      &, &:hover, &:focus
+        color $navbar-link-active-color
+        background-color $navbar-link-active-bg
+    > .disabled > a
+      &, &:hover, &:focus
+        color $navbar-link-disabled-color
+        background-color $navbar-link-disabled-bg
+    > .open > a
+      &, &:hover, &:focus
+        color: $navbar-link-active-color
+        background-color: $navbar-link-active-bg
+  // icons
+  .nav-social
+    li > a
+      padding-top: ($navbar-padding - 10);
+      padding-bottom: 0;
+      padding-left: 5px;
+      padding-right: 5px;
+      &:not(.fa)
+        color: $navbar-link-color;
+      .fa
+        transition: 250ms color;
+      .fa-circle
+        font-size: 2.3em;
+        color: #558;
+        $__style = 0px #ccc;
+        $distance = 1px
+        text-shadow: 0-($distance) 0-($distance) $__style,
+                      ($distance) 0-($distance) $__style,
+                     0-($distance)  ($distance) $__style,
+                      ($distance)  ($distance) $__style;
+      .fa-twitter
+        font-size: 1.3em;
+        //color: rgb(120,120,200)
+        color: rgb(0,0,0)
+      .fa-github
+        font-size: 1.3em;
+        color: rgb(0,0,0)
+      .fa-reddit-alien
+        font-size: 1.3em;
+        color: rgb(0,0,0)
+      &:hover, &:focus
+        .fa-twitter
+          color: rgb(150,150,250)
+        .fa-github
+          color: rgb(230,230,230)
+        .fa-reddit-alien
+          color: rgb(230,230,230)
+
+  .navbar-text
+    // Margin set for temporary "Site Not Complete" disclaimer in navbar
+    margin-top: $navbar-padding - 5 !important;
+    margin-bottom: 0px !important;
+    color $navbar-color
+  .navbar-link
+    color $navbar-link-color
+    &:hover
+      color $navbar-link-hover-color
+  .navbar-brand
+    margin-left: 0 !important;
+    font-family: 'Voltaire';
+    padding-top: $navbar-padding;
+    padding-bottom: $navbar-padding;
+    font-size: 36px
+    color $navbar-link-color
+    &:hover, &:focus
+      color $navbar-brand-hover-color
+      background-color: $navbar-brand-hover-bg
+
+  .hr-divider-nav
+    > li > a
+      padding-top: 4px;
+      padding-bottom: 4px;
+      font-size: 100%;
+    > .active > a
+      font-weight: 300;
+      background: transparent;
+  .navbar-toggle
+    border-color $navbar-toggle-border-color
+    &:hover, &:focus
+      background-color $navbar-toggle-hover-bg
+    .icon-bar
+      background-color $navbar-toggle-icon-bar-bg
+
+  .btn-link
+    color $navbar-link-color
+    &:hover, &:focus
+      color $navbar-link-hover-color
+    &[disabled], fieldset[disabled] &
+      &:hover, &:focus
+        color $navbar-link-disabled-color
+
+  .navbar-collapse, .navbar-form
+    border-color $navbar-border
+
+  .navbar-collapse
+    height auto
+    border-top 0
+    box-shadow none
+    max-height none
+    padding-left 0
+    padding-right 0
+  .navbar-collapse.collapse
+    display block !important
+    width auto !important
+    padding-bottom 0
+    overflow visible !important
+  .navbar-collapse.in
+    overflow-x visible
+  .navbar-right .dropdown-menu
+    left 0
+    right auto
+  .navbar-collapse .navbar-nav.navbar-right:last-child
+    margin-right 0
+  .dropdown-menu
+    background-color $navbar-dropdown-bg
+    > li > a
+      color $navbar-color
+      &:hover, &:focus
+        background-color $navbar-dropdown-hover-bg
+        color $navbar-link-color
+.sidebar nav
+  border-right medium solid
+  border-color $navbar-border
+  transition: border-color 250ms ease-out
+
+  shadow = 2px -1px 5px 0px rgba(0,0,0,0.5)
+  -webkit-box-shadow shadow
+  -moz-box-shadow shadow
+  box-shadow shadow
+
+  &:hover
+    border-color $navbar-border-hover
+
+  // Padding fixes
+  > .container-fluid, > .container
+    padding-left: 0;
+    padding-right: 0;
+
+  .nav
+    > li
+      > :not(a)
+        padding-left: 15px;
+        padding-right: 15px;
+      > a
+        padding-left: 30px;
+        padding-right: 30px;
+
+/*
+ * Main content.
+ */
+p
+  font-size: $p-font-size;
+#page-layout
+  max-width: 1250px;
+  background-color: #448;
+header
+  h1
+    border-bottom: medium solid;
+  h2
+    border-bottom: thin solid;
+#mainpage
+  padding-left: $spacer-x * 3;
+  padding-right: $spacer-x * 3;
+  > header
+    margin-top:     6rem;
+    margin-bottom:  6rem;
+  > *
+    &:last-child
+      padding-bottom: 20px;
+
+main
+  .documentation
+    padding-left: 20px;
+    padding-right: 20px;
+    > section
+      p
+        font-family: 'Open Sans';
+        line-height: 1.4rem;
+      .row,&.row
+        margin-left: 0;
+        margin-right: 0;
+.nav-documentation
+  .fa
+    margin-right: 4px;
+
+
+// Divider
+.hr-divider
+  position: relative;
+  font-size: 12px;
+  line-height: $spacer;
+  text-align: center;
+  text-transform: uppercase;
+  &:before
+    position: absolute;
+    top: 50%;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #434857;
+.hr-divider-content
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  padding-left: 1em;
+  padding-right: 1em;
+  color: #6f7890;
+  vertical-align: middle;
+  background-color: #153049;
+.hr-divider-heading
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 100%;
+  color: inherit;
+

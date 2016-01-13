@@ -1,0 +1,165 @@
+//-
+  Copyright 2016 Ali Moghnieh
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+extends templates/documentation
+
+block variables
+  - var title = "Types"
+  - var subtitle = ""
+
+mixin type_link(name)
+  li: a(href= "#" + name)
+    if Object.keys(attributes).length > 0
+      span&attributes(attributes)
+    | #{name}
+
+mixin add_type_section(name)
+  +add_section()(id=name)
+    header: h2
+      if Object.keys(attributes).length > 0
+        span.m-r&attributes(attributes)
+      | #{name}
+    block
+
+
+block sidebarnav
+  +type_link('Main')
+  li: h4 General Types
+  +type_link('Array & List')
+  +type_link('Boolean')
+  +type_link('Float')
+  +type_link('Integer')
+  +type_link('String')
+  +type_link('Vector')
+  li: h4 Blur Types
+  +type_link('Extent')
+  
+append content
+  +add_section
+    p Whenever you're using a computer, you're using software. Software most likely written in a computer language. Computer languages have different types an object can be. For example, the number 1 is represented as an #[mark Integer]. The decimal number 2.3 is commonly represented as a #[mark Float].
+
+  section
+    header: h1 General Types
+    p Listed below are a few general data types that are core to computer systems and how they function. 
+
+    //-Array
+    +add_type_section('Array & List')
+      p An #[b Array] is simply a collection of #[em things]. These things are often referred to as #[b elements] or #[b entries]. Take the following for example:
+
+      pre.m-t 
+        span You just woke up and before getting to work you have a few tasks you must perform.
+        //- div is used to bypass padding
+        div: ol
+          li Get out of bed.
+          li Brush your teeth.
+          li Change to appropriate clothing.
+          li Get to work.
+      p As you can see, you have an ordered #[b List of tasks] to do. Arrays can be thought of in the same way, however, note that most of the time they are mutable. This means that I can create an Array with the #[mark Integer] 2. Then, sometime later add another #[mark Integer] of value 4.
+
+      p Arrays are usually unique in what element types they contain. For example, if you're creating an array of player names, then your Array would be specific to the type #[mark String], since a String is text.
+
+      h3 Usage
+      pre: code.yaml.
+        myInlineArray: ['First Element', 'Second Element', 'Third Element']
+        myList:
+        - First Element
+        - Second Element
+        - Third Element
+
+    //-Boolean
+    +add_type_section('Boolean')
+      p #[em Are you in or are you out?] A simple yes or no question. Using the same logic, a #[b Boolean] can be either yes or no. When it comes to computers, you refer to such possible answers as #[b Booleans]. Invented by Mathematician #[a(href="https://en.wikipedia.org/wiki/George_Boole") George Boole], the Boolean type is most commonly represented in the values #[b true] or #[b false]. However, they can possibly represented as #[b 0] or #[b 1] (their binary form) and #[b yes] or #[b no] (their human form), assuming the specifications say those are valid boolean terms.
+
+      h3 Usage
+      pre: code.
+        myTrueBoolean: true
+        myFalseBoolean: false
+
+    //-Float
+    +add_type_section('Float')
+      p A #[b Float] can be thought of exactly as a decimal number. That could be 1.0, 1.10, 1.337, any number with a decimal point in it. The #[b Float] type gets its name from how it is represented in memory.
+
+      h3 Usage
+      pre: code.
+        myFloat: 0.1
+        myOtherFloat: 1.0
+        and: 12.34
+
+      .row: +info('When a `Float` is requested, Blur will also accept other forms of numbers.')
+
+    //-Integer
+    +add_type_section('Integer')
+      p An #[b Integer] is a whole number such as 1, 20, 300.
+
+      h3 Usage
+      pre: code.
+        myWholeNumber: 1
+        myOtherWholeNumber: 20
+        And: 300
+
+      .row: +info
+        p When an #[mark Integer] is requested, Blur will also accept other forms of numbers.
+
+    //-String
+    +add_type_section('String')
+      p A #[b String] is a piece of text. #[code "Like this!"] #[code 'Or this...']. #[b Strings] are used to tell computers whether you're writing code or human language. In many cases #[b Strings] are defined by placing the text inbetween "" (double quotation marks) or '' (single quotation marks). However, in Blur, this is unnecessary, thus making it more convenient for you.
+      p With Blur, in many cases you don't need to wrap your text in quotation marks to make a String.
+
+      h3 Usage
+      pre: code.
+        myString: My text
+        myOtherString: 'Some player''s name'
+        And: "This works the same way as both above, except this is the text."
+
+    //-Vector
+    +add_type_section('Vector')
+      p A #[b Vector] is a point in 3D space. As such, a #[b Vector] consists of three components: #[em x], #[em y], and #[em z]. Unlike most real world conventions, Minecraft's x is a horizontal plane which faces north and south, the z is a horizontal plane which goes from west to east, and the y is a veritcal plane.
+      p Down to its core, a #[b Vector] expects to deserialize a #[mark String]. Which can be defined in a few ways listed below
+
+      h3 Usage
+      pre: code.
+        validVector:           -1,2,-3   # x: -1, y: 2, z: -3
+        anotherValidVector:     4, 5, 6  # White space ignored
+        yetAnotherValidVector: "7, 8, 9" # x: 7, y: 8, z: 9
+
+  //-Blur Types
+  section
+    header: h1 Blur Types
+    p Listed below are all the Blur data types there are to help you understand Module requirements. 
+
+    //-Extent
+    +add_type_section('Extent')
+      p An #[b Extent] is an area within the World. Anything within the world is an #[b Extent] really. For example, a block is an #[b Extent]. Extents can also be apart of one another. This is both very powerful and a little bit harmful if configured incorrectly. Please be sure to read the full documentation for modules requiring #[b Extents] before using them.
+      p If #[b Extents] are used incorrectly, your map configuration might not work as you expect.
+
+      h3 Usage
+      pre: code.
+        myExtentReference: extentId
+        myNewExtent: 
+          block: 1,2,3
+
+      .row: +info('Check out the `Extents` Module for more information.')
+
+    //-Filter
+    +add_type_section('Filter')
+      p A #[b Filter] is a means of taking certain states and applying them to other parts of the code. Anything within the world is an #[b Extent] really. For example, a block is an #[b Extent]. Extents can also be apart of one another. This is both very powerful and a little bit harmful if configured incorrectly. Please be sure to read the full documentation for modules requiring #[b Extents] before using them.
+      p If #[b Filters] are used incorrectly, your map configuration might not work as you expect.
+
+      h3 Usage
+      pre: code.
+        myFilterReference: filterId
+        myNewFilter: 
+          team: red # Filter that targets the red team.
+      .row: +info('Check out the `Filters` Module for more information.')

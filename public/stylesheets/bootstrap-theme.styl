@@ -1,0 +1,86 @@
+/*
+ * Copyright 2016 Ali Moghnieh
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// Reset Bootstrap default font to browser default.
+html, body, textarea, pre, code, kdb, pre, samp, blockquote
+  font-size: 1rem;
+
+.text-muted
+  color #B5B7BD
+.text-primary
+  color #A3DCDC
+  font-weight 700
+  font-size 120%
+.table
+  border-radius 3px
+  > thead:first-child
+    > tr:first-child
+      > th
+        border-radius 3px
+
+.footer
+  text-align: center
+  margin-left auto
+  margin-right auto
+  margin-bottom: 50px;
+  > p
+    margin 0px
+
+// navbar
+.navbar
+  min-height: 0;
+  margin-bottom: 0;
+  li
+    h1, h2, h3, h4, h5, h6
+      margin-bottom: 5px;
+
+a
+  color: $link-color
+  &:hover
+    color: $link-hover-color
+
+pre
+  color: $default-color;
+  background-color: $navbar-bg;
+  padding: 0;
+  & > :not(code)
+    padding: 0.5em;
+  > code
+    font-size: $code-font-size;
+
+.table
+  th
+    font-size: 110%;
+    color: $default-color + 20
+.table-hover
+  > tbody > tr
+    transition: 50ms color, 50ms background-color;
+    &:hover
+      color: $default-color + 50
+      background-color: rgba(170,170,250,0.8)
+.table-striped
+  > tbody 
+    > tr:nth-of-type(odd)
+      background-color: #669;
+    > tr:nth-of-type(even)
+      background-color: #554990;
+
+mark, code
+  color: $default-color;
+  background-color: #335;
+  border-radius: 4px;
+  font-family: monospace;
+  letter-spacing: 1px;
