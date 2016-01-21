@@ -13,10 +13,11 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-extends layout
+extends documentation
 
 block variables
   - var subtitle = "Guide"
+  - var category = "Guides"
 
 mixin guide_link(href, name)
   if href !== ''
@@ -24,15 +25,6 @@ mixin guide_link(href, name)
   - var __href = '/guides' + href
   li(class=path===__href?'active':undefined): a(href="/guides" + href)&attributes(attributes)= name
 
-block _content
-  header: h1 Guides
-  section.row.no-padding
-    //- First column - Navbar
-    aside.sidebar.col-xs-2
-      nav.navbar.navbar-default(role="navigation")
-        .container-fluid
-          ul.nav.nav-stacked
-            +guide_link('', 'Getting Started')
-    //- Second column - content
-    main.col-xs-9
-      block content
+block sidebarnav
+  +guide_link('', 'Getting Started')
+
