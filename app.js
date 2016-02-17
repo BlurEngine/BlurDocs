@@ -77,7 +77,6 @@ app.use(function(err, req, res, next) {
 
 function compile(str, path) {
     return stylus(str)
-            .import('variables.styl')
             .set('filename', path)
             .use(nib());
 }
