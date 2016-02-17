@@ -18,5 +18,33 @@ append variables
   - title = "Main"
 
 block content
-  +add_section
-    | Main page for Modules
+  +add_section('Introduction')
+    p To interact and truly understand Blur one must understand the concept of Modules. A module is an #[b independent unit] in a complex system. Think of it like a car. A car isn't just a car, a car is wheels, engine, steering wheel and other parts put together to construct what is known as a car. In this same context, a wheel can be considered a module, so can the engine and steering wheel. In the same way, creating a game consists of more than just the core idea.
+
+    p Take Pac-Man for example. The game is more than just Pac-Man himself, you've also got "ghosts", cherries, dots, stages, lives, and score. As such, you can think of preceding list as a #[b collection of modules].
+
+    p Similarly, Blur uses the concept of Modules to construct a complex structure, which may be in the form of a game. Therefore, in order to turn an idea into a functioning game, one must #[b think abstractly], breaking the idea into little pieces that Blur modules can handle.
+
+    p However, Blur provides an #[b API] which allows for the creation of custom modules, meaning if you know your way around coding you can write your own modules that do unique things. This is especially useful for those who wish to just remove the boilerplate of having to write game code and instead focus on writing the real concept.
+
+    p The concept is really simple once you understand it, modules are like cogwheels in a wrist-watch allowing the hands to tick, also important to note is that some cogwheels might #[b depend] on others being there. With #[em time], you will be able to construct modules without having to refer to documentation.
+
+  +add_section('Getting Started')
+    p Getting started on how to use modules can be both #[b easy and challenging] at times. Depending on what modules you’re using, you need to make sure you read the documentation written for it so that as a user you can understand the intended functionality. Failure to do so may lead in unexpected behaviour.
+
+    p However, Blur strives to make your life easier. As such, documentation will always be provided for #[b stable] modules. Stable modules are ones that are meant for public use, at some point in time, a module may be accessible for the average user, but it may not be one that is meant to be used by the average user unless they know what they are doing. So be on the lookout for documented modules.
+
+    p To get started with reading our documentation, use the alphabetically ordered menu on the left to your advantage, alternatively, if you’re new to Blur and need more guidance check out the guides page.
+
+  +add_section('Module Index')
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Module
+          th Description
+      tbody
+        each object in modules
+          tr
+            td: a(href=object.slug) #{object.name}
+            td=object.description
+
