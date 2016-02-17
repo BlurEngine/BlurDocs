@@ -19,7 +19,15 @@ block variables
   - var subtitle = "Module"
   - var category = "Modules"
 
-mixin module_link(href, name)
+  //- Define modules JSON array
+  -
+    var modules = [
+      {slug: "extents",          name: "Extents",           description: "Define regions in a world."},
+      {slug: "filters",          name: "Filters",           description: "Filter entities to stand out."},
+      {slug: "goal",             name: "Goal",              description: "Define stage-ending goals."}
+    ]
+
+mixin module_link(href, name, tooltip)
   if href !== ''
     - href = '/' + href
   - var __href = '/modules' + href
@@ -27,5 +35,5 @@ mixin module_link(href, name)
 
 block sidebarnav
   +module_link('', 'Main')
-  +module_link('extents', 'Extents')
-  +module_link('filters', 'Filters')
+  each module in modules
+    +module_link(module.slug, module.name)
