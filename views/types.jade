@@ -43,6 +43,7 @@ block sidebarnav
   +type_link('Integer')
   +type_link('String')
   +type_link('Vector')
+  +type_link('Duration')
   li: h4 Blur Types
   +type_link('Extent')
   
@@ -133,6 +134,31 @@ append content
         validVector:           -1,2,-3   # x: -1, y: 2, z: -3
         anotherValidVector:     4, 5, 6  # White space ignored
         yetAnotherValidVector: "7, 8, 9" # x: 7, y: 8, z: 9
+
+    +add_type_section('Duration')
+      :markdown-it
+        A **Duration** is a length of time in which something continues. For example, the duration it took to write this sentence is approximately _30 seconds_. In Blur, a duration is represented as a `String`, e.g. `3m` which means 3 minutes. What is great about durations is the that you can specify multiple units at once, for example `20m30s` would translate to 20 minutes and 30 seconds. The following table lists all the possible units that may form a `Duration`:
+
+      table.table(style="table-layout: fixed;")
+        thead: tr
+          th Unit
+          th Identifier
+          th Example
+        tbody
+          tr: #[td Days] #[td d] #[td 1d]
+          tr: #[td Hours] #[td h] #[td 1h]
+          tr: #[td Minutes] #[td m] #[td 1m]
+          tr: #[td Seconds] #[td s] #[td 1s]
+          tr: #[td Milliseconds (1000 every second)] #[td ms] #[td 1ms]
+
+      h3 Usage
+      pre: code.
+        duration: 1ms       # One millisecond
+        duration: 1s        # One second
+        duration: 1m        # One minute
+        duration: 1h        # One hour
+        duration: 1d        # One day
+        duration: 1d2h3m4s  # One day, Two hours, Three minutes, and Four seconds
 
   //-Blur Types
   section

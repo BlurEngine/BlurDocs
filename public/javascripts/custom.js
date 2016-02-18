@@ -22,21 +22,15 @@ $(function() {
 $('.card-primary,.card-success,.card-info,.card-danger,.card-warning').addClass('card-colored');
 
 var types = {
-    'array': {
-     href: "/types#Array & List"
-    }, 'boolean': {
-     href: "/types#Boolean"
-    }, 'float': {
-     href: "/types#Float"
-    }, 'int': {
-     href: "/types#Integer"
-    }, 'integer': {
-     href: "/types#Integer"
-    }, 'string': {
-     href: "/types#String"
-    }, 'vector': {
-     href: "/types#Vector"
-    }
+    array: {href: "/types#Array & List"}
+    ,boolean: {href: "/types#Boolean"}
+    ,float: {href: "/types#Float"}
+    ,int: {href: "/types#Integer"}
+    ,integer: {href: "/types#Integer"}
+    ,string: {href: "/types#String"}
+    ,vector: {href: "/types#Vector"}
+
+    ,duration: {href: "/types#Duration"}
 };
 var modules = {
     'extents': {
