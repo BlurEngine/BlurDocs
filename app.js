@@ -22,6 +22,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var stylus = require('stylus');
 var nib = require('nib');
+var git = require('git-rev');
 
 var routes = require('./routes/index');
 
@@ -41,6 +42,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+git.short((short) => {
+    app.set('git-short', short);
+});
+git.branch((branch) => {
+    app.set('git-branch', branch);
+});
 
 app.use('/', routes);
 
