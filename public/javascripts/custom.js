@@ -31,6 +31,9 @@ var types = {
     ,vector: {href: "/types#Vector"}
 
     ,duration: {href: "/types#Duration"}
+
+    ,extent: {href: "/types#Extent"}
+    ,filter: {href: "/types#Filter"}
 };
 var modules = {
     'extents': {
