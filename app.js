@@ -22,6 +22,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var stylus = require('stylus');
 var nib = require('nib');
+var autoprefixer = require('autoprefixer-stylus');
 var git = require('git-rev');
 
 var routes = require('./routes/index');
@@ -79,6 +80,8 @@ app.use(function(err, req, res, next) {
 function compile(str, path) {
     return stylus(str)
             .set('filename', path)
+            .set('compress', true)
+            .use(autoprefixer())
             .use(nib());
 }
 
