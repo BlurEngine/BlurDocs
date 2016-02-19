@@ -1,0 +1,38 @@
+//-
+  Copyright 2016 Ali Moghnieh
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+nav.navbar.navbar-default
+  .container
+    .navbar-header
+      a.navbar-brand(href='/') Blur
+    .collapse.navbar-collapse#main-navbar
+      ul.nav.navbar-nav
+        +nav_link('', 'Home', 'home')
+        //-+nav_link('//blur.readme.io/docs', 'Documentation', 'book')
+        +nav_link('guides', 'Guides', 'book')
+        +nav_link('modules', 'Modules', 'wrench')
+        +nav_link('examples', 'Examples', 'file-text')
+        +nav_link('types', 'Types', 'gears')
+      ul.nav.navbar-nav.navbar-right.nav-social
+        li: a(href='https://github.com/BlurEngine'): span.fa-stack
+          i.fa.fa-circle.fa-stack-1x
+          i.fa.fa-github.fa-stack-1x
+        li: a(href='https://twitter.com/BlurEngine'): span.fa-stack
+          i.fa.fa-circle.fa-stack-1x
+          i.fa.fa-twitter.fa-stack-1x
+        li: a(href='https://reddit.com/r/blurengine'): span.fa-stack
+          i.fa.fa-circle.fa-stack-1x
+          i.fa.fa-reddit-alien.fa-stack-1x
+        h2.navbar-text SITE NOT COMPLETE

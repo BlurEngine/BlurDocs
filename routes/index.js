@@ -51,6 +51,9 @@ router.use(/\/examples(\/.*)?/i, function(req, res, next) {
 router.use('/types', function(req, res, next) {
     res.render('types', {md:md, path: '/types'});
 });
+router.use('/builder', function(req, res, next) {
+    res.render('builder', {md:md, path: '/builder'});
+});
 router.use(/^\/$/, function(req, res, next) {
     res.render('index', {md:md, path: '/'});
 });

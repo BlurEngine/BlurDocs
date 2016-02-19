@@ -13,18 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-doctype html
-
-html
-  head
-    include ../includes/head.jade
-    block head
-  body
-    include ../includes/navbar.jade
-    .container#page-layout
-      block _content
-      include ../includes/footer.jade
-
-    script(src='/javascripts/jquery-2.1.4.min.js')
-    include ../includes/post.jade
-
+//- Bootstrap Bill
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+script(src="/javascripts/custom.js")
+block scripts

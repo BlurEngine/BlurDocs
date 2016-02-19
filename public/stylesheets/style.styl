@@ -452,3 +452,40 @@ main
   font-size: 100%;
   color: inherit;
 
+
+#builder-page
+  > .container-fluid
+    display: flex;
+    padding: 0;
+    &, > *
+      max-height: 90%;
+
+  #builder-sidebar
+    flex 1 15%
+    order 1
+  main
+    flex 1 100%
+    order 2
+
+    padding 1em 2em
+
+#builder-sidebar
+  height: 100%;
+  background-color: rgba(lighten($background-color, 30%), 0.7)
+
+#builder-page .designer
+  display: flex;
+  flex-flow: column wrap;
+  flex-direction: column
+  align-items: center;
+  justify-content: center;
+  align-content: stretch;
+  .module
+    padding: 1em;
+    background-color #8B6FD1
+    border-radius: 0px;
+    border: 1px solid #fff;
+    width: 200px;
+    height: 100px;
+    &+.module
+      margin-top: 4em;
