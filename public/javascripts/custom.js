@@ -32,6 +32,10 @@ var types = {
 
     ,duration: {href: "/types#Duration"}
 
+    ,relational: {href: "/types#Relational"}
+    ,relationalinteger: {href: "/types#Relational"}
+    ,relationaldouble: {href: "/types#Relational"}
+    ,relationalfloat: {href: "/types#Relational"}
     ,extent: {href: "/types#Extent"}
     ,filter: {href: "/types#Filter"}
 };

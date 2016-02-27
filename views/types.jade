@@ -159,6 +159,50 @@ append content
         duration: 1h        # One hour
         duration: 1d        # One day
         duration: 1d2h3m4s  # One day, Two hours, Three minutes, and Four seconds
+    +add_type_section('Relational')
+      :markdown-it
+        A **Relational** object is a wrapper for a different type with a relational operator. Typically, relationals are used with numbers.
+
+        To break all that down into a real world example. You have a basket of 10 apples. When using a computer, you don't test to see if the basket size is equal to 10, because doing so would mean that if the basket had 11 apples the test would return negative. However, what you do is tell the computer, test to see if the basket item quantity is equal to or greater than 10. In Blur, that is written as `>=10` and will return positive for 10 or more apples in your basket.
+
+        Relationals can change a function completely by comparing two values together and getting a more general result.
+
+        The following table shows all 6 possible operators with examples of testing on the number 2:
+
+      - var num = 2
+      mixin rel_return(op, ...entries)
+        each entry, index in entries
+          | #{num + " " + op + " " + entries[index++]} will return #[mark #{entries[index]}] #[br]
+
+      table.table.table-condensed.table-striped
+        thead
+          tr: #[th Operator] #[th Description] #[th Example]
+        tr
+          td =
+          td #[b Equal], other object must be equal to the current.
+          td: +rel_return('=', 1, false, 2, true, 3, false)
+        tr
+          td !
+          td #[b Not equal], other object must not equal to the current.
+          td: +rel_return('!', 1, true, 2, false, 3, true)
+        tr
+          td >
+          td #[b Greater than], current must be greater than the other object.
+          td: +rel_return('>', 1, true, 2, false, 3, false)
+        tr
+          td <
+          td #[b Less than], current must be less than the other object.
+          td: +rel_return('<', 1, false, 2, true, 3, true)
+        tr
+          td >=
+          td #[b Greater than or equal to], current must be greater than or equal the other object.
+          td: +rel_return('>=', 1, true, 2, true, 3, false)
+        tr
+          td <=
+          td #[b Less than or equal to], current must be less than or equal the other object.
+          td: +rel_return('<=', 1, false, 2, true, 3, true)
+
+      p #[b Note:] It is important to note that whatever utilizes this type gets to decide what happens if no operator was provided, so be sure to read the appropriate documentation well.
 
   //-Blur Types
   section
