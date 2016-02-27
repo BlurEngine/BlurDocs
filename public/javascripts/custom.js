@@ -24,6 +24,8 @@ $('.card-primary,.card-success,.card-info,.card-danger,.card-warning').addClass(
 var types = {
     array: {href: "/types#Array & List"}
     ,boolean: {href: "/types#Boolean"}
+    ,true: {href: "/types#Boolean", class: "true"}
+    ,false: {href: "/types#Boolean", class: "false"}
     ,float: {href: "/types#Float"}
     ,int: {href: "/types#Integer"}
     ,integer: {href: "/types#Integer"}
@@ -60,6 +62,9 @@ $('mark,code').each(function (item) {
         classToAdd = 'module-type';
     }
     if (foundType) {
+        if (foundType.class) {
+            classToAdd += " " + foundType.class
+        }
         e.text(""); // Remove original text
         var anchor = document.createElement("a");
         anchor.href = foundType.href;
